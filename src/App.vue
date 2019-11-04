@@ -46,6 +46,18 @@
     </div>
     <div>
     <router-view/>
+
+    <b-navbar toggleable="lg" type="dark" variant="dark" bottom>
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+      <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav class="ml-auto">
+          <b-nav-item>"BG Computacion 2019 - Todos los derechos e izquierdos bien puestos"</b-nav-item>      
+        </b-navbar-nav>
+      <b-navbar-nav class="ml-auto">
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
+
     </div>
   </div>
 </template>
