@@ -23,7 +23,7 @@
         <b-row>
             <b-col>
                 <b-input-group prepend="Consulta" class="mt-3">
-                    <b-form-input></b-form-input>
+                    <b-form-input placeholder="Tiene que ser mas grande (como dice ella)"></b-form-input>
                 </b-input-group>
             </b-col>
         </b-row>
