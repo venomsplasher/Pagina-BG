@@ -16,9 +16,9 @@
 
           <b-collapse id="nav-collapse" is-nav>
             <b-navbar-nav class="ml-auto">
-              <b-nav-item href="#">INICIO</b-nav-item>
-              <b-nav-item href="#"  class="ml-3">CATALOGO</b-nav-item>
-              <b-nav-item href="#"  class="ml-3">CONTACTO</b-nav-item>
+              <b-nav-item :to="{name:'home'}">INICIO</b-nav-item>
+              <b-nav-item :to="{name:'catalogo'}" class="ml-3">CATALOGO</b-nav-item>
+              <b-nav-item :to="{name:'contacto'}"  class="ml-3">CONTACTO</b-nav-item>
               <!-- <b-nav-item-dropdown text="Productos" class="ml-3" right>
                 <b-dropdown-item href="#">EN</b-dropdown-item>
                 <b-dropdown-item href="#">ES</b-dropdown-item>
