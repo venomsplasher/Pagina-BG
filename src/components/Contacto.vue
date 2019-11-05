@@ -22,11 +22,17 @@
         </b-row>
         <b-row>
             <b-col>
-                <b-input-group prepend="Consulta" class="mt-3">
-                    <b-form-input placeholder="Tiene que ser mas grande (como dice ella)"></b-form-input>
-                </b-input-group>
+                <!-- <b-input-group prepend="Consulta" class="mt-3">
+                    <b-form-input></b-form-input>
+                </b-input-group> -->
+                <b-form-textarea
+                    id="textarea-default"
+                    placeholder="Consulta"
+                    class="mt-3"
+                ></b-form-textarea>
             </b-col>
         </b-row>
+        <b-button class="mt-3">Enviar</b-button>
         </div>
 
         <div  id="iconowhatsapp" style="width:100%;padding-bottom:5%;padding-top:5%;">

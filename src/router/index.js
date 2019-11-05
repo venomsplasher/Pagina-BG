@@ -31,6 +31,12 @@ const routes = [
     name: 'contacto',
     component: () => import('../views/ContactoView.vue')
   }
+  ,
+  {
+    path: '/administrador',
+    name: 'administrador',
+    component: () => import('../views/AdministradorView.vue')
+  }
 ]
 
 const router = new VueRouter({

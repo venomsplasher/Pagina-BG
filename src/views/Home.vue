@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div class="container" >
+    <div class="container">
       <div>
         <b-carousel
           id="carousel-w-animation"
@@ -14,7 +14,6 @@
         >
           <!-- <b-carousel-slide
             caption="First slide"
-           
             :img-src="require('@/assets/imagenes/auris.webp')"
           ></b-carousel-slide> -->
           <b-carousel-slide
