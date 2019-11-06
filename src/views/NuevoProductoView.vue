@@ -1,6 +1,6 @@
 <template>
     <div class="mt-3">
-        <Administrador/>
+        <NuevoProducto/>
         
     </div> 
 </template>
@@ -8,12 +8,12 @@
 
 </style>
 <script>
-import Administrador from '@/components/Administrador.vue'
+import NuevoProducto from '@/components/NuevoProducto.vue'
 
 export default {
-    name: 'AdministradorView',
+    name: 'NuevoProductoView',
   components: {
-    Administrador
+    NuevoProducto
   
   }
 }

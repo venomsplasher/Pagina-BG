@@ -195,8 +195,10 @@
                                 <h4> {{row.item.marca}}</h4>
 
                             <b-card-text>
-                                This is a wider card with supporting text as a natural lead-in to additional content.
-                                This content is a little bit longer.
+                                
+                                <h5>{{row.item.descripcion}}</h5><br>
+                                <h2 style="color:green">${{row.item.precio}}</h2>                                
+
                             </b-card-text>
                             </b-card-body>
                         </b-col>
@@ -218,37 +220,16 @@
 </style>
 <script>
 import axios from "axios"
+import {Productos} from '../firebase'
 
 export default {
     name: "Catalogo",
     data() {
       return {
         urlprueba:'https://images-na.ssl-images-amazon.com/images/I/41CCazqracL.jpg',
-        items: ''
-        // [
-        //   { stock: 40, titulo:'pelele',marca:'a la colimbaaa',categoria:' ALFONSIN'},
-        //   { isActive: false, age: 21, name: { first: 'Larsen', last: 'Shaw' } },
-        //   {
-        //     isActive: false,
-        //     age: 9,
-        //     name: { first: 'Mini', last: 'Navarro' },
-        //     _rowVariant: 'success'
-        //   },
-        //   { isActive: false, age: 89, name: { first: 'Geneva', last: 'Wilson' } },
-        //   { isActive: true, age: 38, name: { first: 'Jami', last: 'Carney' } },
-        //   { isActive: false, age: 27, name: { first: 'Essie', last: 'Dunlap' } },
-        //   { isActive: true, age: 40, name: { first: 'Thor', last: 'Macdonald' } },
-        //   {
-        //     isActive: true,
-        //     age: 87,
-        //     name: { first: 'Larsen', last: 'Shaw' },
-        //     _cellVariants: { age: 'danger', isActive: 'warning' }
-        //   },
-        //   { isActive: true, stock: 26, name: { first: 'Mitzi', last: 'Navarro' } ,marca:'patito'},
-        //   { isActive: false, age: 22, name: { first: 'Genevieve', last: 'Wilson' } },
-        //   { isActive: true, age: 38, name: { first: 'John', last: 'Carney' } },
-        //   { isActive: false, age: 29, name: { first: 'Dick', last: 'Dunlap' } }
-        // ]
+        prueba:[],
+        items: []
+
         ,
         fields: [
           { key: 'categoria', label: 'Categoria', sortable: true, sortDirection: 'desc' },
@@ -282,6 +263,10 @@ export default {
         }
       }
     },
+    firebase:{
+        items:Productos
+    }
+    ,
     computed: {
       sortOptions() {
         // Create an options list from our fields
@@ -295,7 +280,7 @@ export default {
     mounted() {
       // Set the initial number of items
       this.totalRows = this.items.length;
-      this.getProducto();
+    //   this.getProducto();
      
     },
     methods: {
@@ -314,18 +299,18 @@ export default {
         this.currentPage = 1
       },
       getProducto(){
-            axios.get('http://www.mocky.io/v2/5dbd24963300004d2f16a140', {
+            // axios.get('http://www.mocky.io/v2/5dbd24963300004d2f16a140', {
                            
-                        }).then(response => {
-                            // this.titulo = response.data.Titulo;
-                            // this.precioProducto = response.data.Precio;
-                            // this.descripcionProducto = response.data.Descripcion;
-                            this.items = response.data;
-                            console.log(response.data);
-                            console.log("Respuesta: "+this.respuesta);
-                        }).catch(e => {
-                            console.log(e);
-                        })
+            //             }).then(response => {
+            //                 // this.titulo = response.data.Titulo;
+            //                 // this.precioProducto = response.data.Precio;
+            //                 // this.descripcionProducto = response.data.Descripcion;
+            //                 this.items = response.data;
+            //                 console.log(response.data);
+            //                 console.log("Respuesta: "+this.respuesta);
+            //             }).catch(e => {
+            //                 console.log(e);
+            //             })
     }
   
   }}

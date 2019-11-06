@@ -33,9 +33,15 @@ const routes = [
   }
   ,
   {
-    path: '/administrador',
-    name: 'administrador',
-    component: () => import('../views/AdministradorView.vue')
+    path: '/prueba',
+    name: 'prueba',
+    component: () => import('../views/PruebaFirebaseView.vue')
+  }
+  ,
+  {
+    path: '/nuevoProducto',
+    name: 'nuevoProducto',
+    component: () => import('../views/NuevoProductoView.vue')
   }
 ]
 
