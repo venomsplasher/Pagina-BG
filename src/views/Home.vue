@@ -3,30 +3,44 @@
     <div class="container" >
       <div>
         <b-carousel
-          id="carousel-no-animation"
+          id="carousel-w-animation"
+          v-model="slide"
+          :interval="4000"
+          controls
           style="text-shadow: 0px 0px 2px #000"
-          no-animation
           indicators
-          img-width="555"
-          img-height="480"
+          @sliding-start="onSlideStart"
+          @sliding-end="onSlideEnd"
         >
-          <b-carousel-slide
+          <!-- <b-carousel-slide
             caption="First slide"
-           
             :img-src="require('@/assets/imagenes/auris.webp')"
+          ></b-carousel-slide> -->
+          <b-carousel-slide
+            img-src="https://www.microassist.com/wp-content/uploads/2017/01/business-woman-working-on-laptop-in-her-office-picjumbo-com-banner-1200x400.jpg"
+          img-width="100"
+          img-height="100"
           ></b-carousel-slide>
           <b-carousel-slide
-            caption="Second Slide"
-            img-src="https://images.philips.com/is/image/PhilipsConsumer/SHB3075BK_00-IMS-es_AR?$jpglarge$&wid=1250"
+            img-src="http://www.certifsa.com/wp-content/uploads/2018/08/e83db40c2bf4043ecd0b4204e2445b97e674e6d11db3114195_1920-1200x400.jpg"
+          img-width="100"
+          img-height="100"
           ></b-carousel-slide>
           <b-carousel-slide
-            caption="Third Slide"
-            img-src="https://www.netcomaccesorios.com/344-large_default/teclado-redragon-dyaus-k509.jpg"
+            img-src="https://www.microassist.com/wp-content/uploads/2017/01/MG_7811-roomrentalblog-banner-1200x400.jpg"
+          img-width="100"
+          img-height="100"
           ></b-carousel-slide>
           <b-carousel-slide
-            caption="Fourth Slide"
-            img-src="https://www.bringerihogar.com.ar/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/p/a/panoramic_6915.png"
+            img-src="https://www.port.ac.uk/-/media/images/heros---1200x400-large---640x400-small/courses/ug-courses/forensic_psychology_1200x400.ashx"
+          img-width="100"
+          img-height="100"
           ></b-carousel-slide>
+          <b-carousel-slide
+            img-src="https://kidsbestprice.com/wp-content/uploads/2019/05/IMG_3364-1200x400.jpg"
+            img-width="100"
+          img-height="100"
+        ></b-carousel-slide>
         </b-carousel>
       </div>
     </div>
