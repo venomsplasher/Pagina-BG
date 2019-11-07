@@ -1,8 +1,8 @@
 <template>
   <div class="home">
-    <div class="container" >
-      <div>
-        <b-carousel
+    <div  >
+      <div >
+<b-carousel
           id="carousel-w-animation"
           v-model="slide"
           :interval="4000"

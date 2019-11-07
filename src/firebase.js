@@ -14,3 +14,4 @@ const app = initializeApp({
 export const db = app.database();
 export const namesRef = db.ref('names');
 export const Productos = db.ref('Productos');
+export const auth = app.auth()

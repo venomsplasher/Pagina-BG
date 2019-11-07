@@ -10,42 +10,78 @@
       </div>
       <div>
         <b-navbar toggleable="lg" type="dark" variant="dark" fixed>
+          <!-- <b-navbar-brand href="#">NavBar</b-navbar-brand> -->
+
           <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
           <b-collapse id="nav-collapse" is-nav>
             <b-navbar-nav class="ml-auto">
-              <b-nav-item :to="{name:'home'}" class="ml-auto">INICIO</b-nav-item>
-              <b-nav-item :to="{name:'catalogo'}" class="ml-auto">CATALOGO</b-nav-item>
-              <b-nav-item :to="{name:'contacto'}" class="ml-auto">CONTACTO</b-nav-item>
+              <b-nav-item :to="{name:'home'}">INICIO</b-nav-item>
+              <b-nav-item :to="{name:'catalogo'}" class="ml-3">CATALOGO</b-nav-item>
+              <b-nav-item :to="{name:'contacto'}"  class="ml-3">CONTACTO</b-nav-item>
+              <b-nav-item :to="{name:'login'}"  class="ml-3" v-if="!estaLogueado()" >LOGIN</b-nav-item>
+              <b-nav-item :to="{name:'nuevoProducto'}"  class="ml-3" v-if="estaLogueado()" >AGREGAR PRODUCTO</b-nav-item>
+              <b-nav-item :to="{name:'administrador'}" class="ml-auto" v-if="estaLogueado()">CATALOGO ADMIN</b-nav-item>
+              <b-nav-item class="ml-3" @click="logout" v-if="estaLogueado()">DESLOGEARSE</b-nav-item>
+              
+              <!-- <b-nav-item-dropdown text="Productos" class="ml-3" right>
+                <b-dropdown-item href="#">EN</b-dropdown-item>
+                <b-dropdown-item href="#">ES</b-dropdown-item>
+                <b-dropdown-item href="#">RU</b-dropdown-item>
+                <b-dropdown-item href="#">FA</b-dropdown-item>
+              </b-nav-item-dropdown> -->
+
+              <!-- <b-nav-item-dropdown right class="ml-3"> -->
+                <!-- Using 'button-content' slot -->
+                <!-- <template v-slot:button-content>
+                  <em>User</em>
+                </template>
+                <b-dropdown-item href="#">Profile</b-dropdown-item>
+                <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+              </b-nav-item-dropdown> -->
             </b-navbar-nav>
-          
+
             <!-- Right aligned nav items -->
             <b-navbar-nav class="ml-auto">
-              <b-nav-item :to="{name:'nuevoProducto'}" class="ml-auto">NUEVO PRODUCTO</b-nav-item>
-              <b-nav-item :to="{name:'administrador'}" class="ml-auto">ADMINISTRADOR</b-nav-item>
+              <!-- <b-nav-item href="#">Inicio</b-nav-item> -->
             </b-navbar-nav>
-            
           </b-collapse>
         </b-navbar>
       </div>
     </div>
     <div>
     <router-view/>
-
-    <b-navbar toggleable="lg" type="dark" variant="dark" bottom>
-      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-      <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav class="ml-auto">
-          <b-nav-item>"BG Computacion 2019 - Todos los derechos e izquierdos bien puestos"</b-nav-item>      
-        </b-navbar-nav>
-      <b-navbar-nav class="ml-auto">
-        </b-navbar-nav>
-      </b-collapse>
-    </b-navbar>
-
     </div>
   </div>
 </template>
+
+<script>
+import {auth} from './firebase'
+export default {
+  name:'navbar',
+  data(){
+    return{
+      usuario:false
+    }
+  },
+    methods:{
+      logout(){
+        auth.signOut().then(()=>{
+          this.$router.push('./login');
+        })
+      },
+      estaLogueado(){
+        if(auth.currentUser){
+          
+          return true;
+        }else{
+          return false
+        }
+      }
+    }
+
+}
+</script>
 
 <style>
 #app {
