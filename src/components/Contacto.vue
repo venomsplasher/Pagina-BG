@@ -47,7 +47,7 @@
             </div> 
                 </b-col>
                 <b-col>
-            <a :href="'https://wa.me/542267531603?text=Nombre:%20'+this.nombreyapellido+'%0A'+'Telefono:%20'+this.telefono+'%0A'+'E-Mail:%20'+this.email+'%0A'+'Consulta:%20'+this.consulta+'%0A%0A'+'Consulta realizada desde BG Computacion Web'">
+            <a :href="'https://wa.me/542254594530?text=Nombre:%20'+this.nombreyapellido+'%0A'+'Telefono:%20'+this.telefono+'%0A'+'E-Mail:%20'+this.email+'%0A'+'Consulta:%20'+this.consulta+'%0A%0A'+'Consulta realizada desde BG Computacion Web'">
                 <img class="imagen" style="display:block; margin:auto; padding-top:0%; width:100px"  src=" http://chaposac.com/wp-content/uploads/2017/09/icono-whatsapp-chaposac.png"/>
             </a>
             <div id="consultawhatsapp" >
