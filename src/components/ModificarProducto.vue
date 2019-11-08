@@ -1,5 +1,5 @@
 <template>
-      <b-container class="bv-example-row mt-5">
+      <b-container class="bv-example-row mt-5 ">
             <b-row>
                 <b-col>
                     <p style="font-size:20px;text-align:start">Nombre de Producto</p>
@@ -46,7 +46,7 @@
                 </b-col>
                 
             </b-row>
-             <b-button  class="mt-3" variant="info" :disabled="validarInsert" @click="PostProducto()">Actualizar Producto</b-button>
+             <b-button  class="mt-3" variant="info" :enabled="validarInsert" @click="updateProducto()">Actualizar Producto</b-button>
         </b-container>
     
 </template>
@@ -55,7 +55,7 @@
 </style>
 <script>
 
-
+import { store } from '../store'
 import {Productos} from '../firebase'
 export default {
 
@@ -69,7 +69,9 @@ export default {
             categoria:'',
             descripcion:'',
             url:'',
-            precio:''
+            precio:'',
+            ProductoStore:{},
+            productos:[]
             
         }
     },
@@ -94,7 +96,7 @@ export default {
         validarInsert(){
             if(this.titulo == ''|| this.stock==''|| this.precio=='')
             {
-                return false;
+                return true;
             }
             else
             {
@@ -113,9 +115,48 @@ export default {
                 url: this.url,
                 precio: this.precio
                 });
+        },
+        getProductoFromStore(){
+            this.ProductoStore = this.$store.getters.getProducto
+            console.log(this.ProductoStore);
+            this.armarProdSeleccionado();
+        },
+        armarProdSeleccionado(){
+            this.titulo = this.ProductoStore.titulo;
+            this.stock = this.ProductoStore.stock;
+            this.marca = this.ProductoStore.marca;
+            this.categoria = this.ProductoStore.categoria;
+            this.descripcion = this.ProductoStore.descripcion;
+            this.url = this.ProductoStore.url;
+            this.precio = this.ProductoStore.precio;
+            
+        }
+        ,
+        updateProducto(){
+            var key = this.ProductoStore['.key']
+            try {
+            Productos.child(key).update({
+
+                titulo: this.titulo,
+                stock: this.stock,
+                marca: this.marca,
+                categoria: this.categoria,
+                descripcion: this.descripcion,
+                url: this.url,
+                precio : this.precio
+
+            })
+            } catch
+            {
+                alert("anduvo ejhem como el orto");
+            }
         }
      
     },
-   
+   mounted(){
+       this.getProductoFromStore();
+    //    this.idProducto = this.$store.getters.getIdProducto;
+    //     alert('el id que vino desde la base es: '+this.idProducto);
+   }
 }
 </script>

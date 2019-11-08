@@ -5,11 +5,27 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    productoEditar:{},
+    carrito:[]
   },
   mutations: {
+    setProducto (state, productoDeAfuera) {
+      state.productoEditar=productoDeAfuera;
+    },
+    agregarProd(state,producto){
+      state.carrito.push(producto);
+    }
   },
   actions: {
   },
   modules: {
+  },
+  getters: {
+    getProducto : state => {
+      return state.productoEditar
+    },
+    getCarrito : state =>{
+      return state.carrito
+    }
   }
 })

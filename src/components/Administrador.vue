@@ -134,12 +134,16 @@
             </template>
 
             <template v-slot:cell(actions)="row">
-                <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">
+                <b-button size="sm" @click="mandarInfo(row.item)" class="mr-1">
                 Editar
                 </b-button>
                 <b-button size="sm" @click="row.toggleDetails">
                 Mostrar {{ row.detailsShowing ? 'menos' : 'mas' }} 
                 </b-button>
+
+
+
+
             </template>
 
             <template v-slot:row-details="row">
@@ -188,12 +192,14 @@
 <script>
 import axios from "axios"
 import {Productos} from '../firebase'
+import { store } from '../store'
 
 export default {
     name: "Administrador",
     data() {
       return {
         urlprueba:'https://images-na.ssl-images-amazon.com/images/I/41CCazqracL.jpg',
+        abrirModal:false,
         prueba:[],
         items: []
 
@@ -225,8 +231,8 @@ export default {
         filterOn: [],
         infoModal: {
           id: 'info-modal',
-          title: '',
-          content: ''
+          title: 'titulo ',
+          content: 'contenido'
         }
       }
     },
@@ -252,9 +258,15 @@ export default {
     },
     methods: {
       info(item, index, button) {
-        this.infoModal.title = `Row index: ${index}`
-        this.infoModal.content = JSON.stringify(item, null, 2)
+        this.infoModal.title = `Titulo: ${index}`
+        this.infoModal.content = item.titulo
+        // JSON.stringify(item, null, 2)
         this.$root.$emit('bv::show::modal', this.infoModal.id, button)
+        this.$router.push('/NuevoProducto');
+      },
+      mandarInfo(item){
+        this.$store.commit('setProducto',item);
+        this.$router.push('/modificarProducto');
       },
       resetInfoModal() {
         this.infoModal.title = ''
@@ -282,37 +294,5 @@ export default {
   
   }}
     
-    // data(){
-    //     return{
-    //         precioProducto:'',
-    //         titulo:"",
-    //         descripcionProducto:'',
-    //         respuesta:''
-
-    //     }
-    // },
-    // methods:{
-    //     getProducto(){
-    //         axios.get('http://www.mocky.io/v2/5dbd0021330000ad2416a109', {
-                           
-    //                     }).then(response => {
-    //                         // this.titulo = response.data.Titulo;
-    //                         // this.precioProducto = response.data.Precio;
-    //                         // this.descripcionProducto = response.data.Descripcion;
-    //                         this.respuesta = response.data;
-    //                         console.log(response.data);
-    //                         console.log("Respuesta: "+this.respuesta);
-    //                     }).catch(e => {
-    //                         console.log(e);
-    //                     })
-    //     }
-    // },
-    // mounted: function () {
-    //     this.$nextTick(function () {
-         
-    //         this.getProducto();
-
-    //     })
-    // }
-//}
+    
 </script>

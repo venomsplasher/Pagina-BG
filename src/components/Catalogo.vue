@@ -167,7 +167,7 @@
             </template>
 
             <template v-slot:cell(actions)="row">
-                <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">
+                <b-button size="sm" @click="agregarAlCarrito(row.item)" class="mr-1">
                 Agregar al carrito
                 </b-button>
                 <b-button size="sm" @click="row.toggleDetails">
@@ -288,6 +288,16 @@ export default {
         this.infoModal.title = `Row index: ${index}`
         this.infoModal.content = JSON.stringify(item, null, 2)
         this.$root.$emit('bv::show::modal', this.infoModal.id, button)
+      },
+      agregarAlCarrito(item){
+          var prod = {
+              titulo : item.titulo,
+              marca: item.marca,
+              cantidad : '5',
+
+          }
+          alert(prod);
+          this.$store.commit('agregarProd',prod);
       },
       resetInfoModal() {
         this.infoModal.title = ''

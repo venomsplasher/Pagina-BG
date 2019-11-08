@@ -53,21 +53,21 @@
     <div>
     <router-view/>
 
-    <b-navbar toggleable="lg" type="dark" variant="dark" style="" bottom class="mt-5">
+    <b-navbar toggleable="lg" type="dark" variant="dark"  bottom class="mt-5">
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
           <b-row>
 
-            <b-col cols="4">
+            <b-col cols="5">
               <b-nav-text>
               Local Pinamar<br />
               Totoras 174<br />
               02254-513484
               </b-nav-text>
             </b-col>
-            <b-col></b-col>
-            <b-col cols="6">
+
+            <b-col cols="7">
               <b-nav-text>
                 Local Valeria<br />
                 Espora y Urquiza<br />

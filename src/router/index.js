@@ -56,7 +56,8 @@ let router = new VueRouter({
       name: 'nuevoProducto',
       component: () => import('../views/NuevoProductoView.vue'),
       meta:{
-        requiresAuth:true 
+        requiresAuth:true
+        
       }
     }
     ,
