@@ -1,22 +1,37 @@
 <template>
   <div class="home">
-    <div  >
-      <div >
-<b-carousel
-          id="carousel-w-animation"
-          v-model="slide"
-          :interval="4000"
-          controls
-          style="text-shadow: 0px 0px 2px #000"
-          indicators
-          @sliding-start="onSlideStart"
-          @sliding-end="onSlideEnd"
-        >
+    <div>
+      <div>
+        <b-row>
+          <b-col bg-danger></b-col>
+          <b-col cols="10">
+            <b-carousel
+            id="carousel-w-animation"
+            v-model="slide"
+            :interval="4000"
+            controls
+            style="text-shadow: 0px 0px 2px #000"
+            indicators
+            @sliding-start="onSlideStart"
+            @sliding-end="onSlideEnd"
+            background="333A42"
+            >
+              <b-carousel-slide
+                :img-src="require('@/assets/Carousel/001.jpg')"
+              ></b-carousel-slide>
+              <b-carousel-slide
+                :img-src="require('@/assets/Carousel/002.jpg')"
+              ></b-carousel-slide>
+              <b-carousel-slide
+                :img-src="require('@/assets/Carousel/003.jpg')"
+              ></b-carousel-slide>
+              <b-carousel-slide
+                :img-src="require('@/assets/Carousel/004.jpg')"
+              ></b-carousel-slide>
+              <b-carousel-slide
+                :img-src="require('@/assets/Carousel/005.jpg')"
+              ></b-carousel-slide> 
           <!-- <b-carousel-slide
-            caption="First slide"
-            :img-src="require('@/assets/imagenes/auris.webp')"
-          ></b-carousel-slide> -->
-          <b-carousel-slide
             img-src="https://www.microassist.com/wp-content/uploads/2017/01/business-woman-working-on-laptop-in-her-office-picjumbo-com-banner-1200x400.jpg"
           img-width="100"
           img-height="100"
@@ -40,11 +55,13 @@
             img-src="https://kidsbestprice.com/wp-content/uploads/2019/05/IMG_3364-1200x400.jpg"
             img-width="100"
           img-height="100"
-        ></b-carousel-slide>
-        </b-carousel>
+        ></b-carousel-slide> -->
+            </b-carousel>
+          </b-col>
+          <b-col></b-col>
+        </b-row>
       </div>
     </div>
-    
   </div>
 </template>
 

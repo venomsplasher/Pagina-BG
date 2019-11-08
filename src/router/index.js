@@ -56,8 +56,16 @@ let router = new VueRouter({
       name: 'nuevoProducto',
       component: () => import('../views/NuevoProductoView.vue'),
       meta:{
-        requiresAuth:true
-        
+        requiresAuth:true 
+      }
+    }
+    ,
+    {
+      path: '/modificarProducto',
+      name: 'modificarProducto',
+      component: () => import('../views/ModificarProductoView.vue'),
+      meta:{
+        requiresAuth:true 
       }
     }
     ,

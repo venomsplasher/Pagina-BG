@@ -21,6 +21,7 @@
               <b-nav-item :to="{name:'contacto'}"  class="ml-3">CONTACTO</b-nav-item>
               <b-nav-item :to="{name:'login'}"  class="ml-3" v-if="!estaLogueado()" >LOGIN</b-nav-item>
               <b-nav-item :to="{name:'nuevoProducto'}"  class="ml-3" v-if="estaLogueado()" >AGREGAR PRODUCTO</b-nav-item>
+              <b-nav-item :to="{name:'modificarProducto'}"  class="ml-3" v-if="estaLogueado()" >MODIFICAR PRODUCTO</b-nav-item>
               <b-nav-item :to="{name:'administrador'}" class="ml-auto" v-if="estaLogueado()">CATALOGO ADMIN</b-nav-item>
               <b-nav-item class="ml-3" @click="logout" v-if="estaLogueado()">DESLOGEARSE</b-nav-item>
               
@@ -51,6 +52,36 @@
     </div>
     <div>
     <router-view/>
+
+    <b-navbar toggleable="lg" type="dark" variant="dark" style="" bottom>
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+      <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav class="ml-auto">
+          <b-row>
+
+            <b-col cols="5">
+              <b-nav-text>
+              Local Pinamar<br />
+              Totoras 174<br />
+              02254-513484
+              </b-nav-text>
+            </b-col>
+
+            <b-col cols="7">
+              <b-nav-text>
+                Local Valeria<br />
+                Espora y Urquiza<br />
+                02254-513484
+              </b-nav-text>      
+            </b-col>
+
+          </b-row>
+        </b-navbar-nav>
+      <b-navbar-nav class="ml-auto">
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
+    
     </div>
   </div>
 </template>
@@ -90,6 +121,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: #000000;
 }
 
 #nav {
