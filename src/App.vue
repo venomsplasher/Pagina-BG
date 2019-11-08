@@ -59,15 +59,15 @@
         <b-navbar-nav class="ml-auto">
           <b-row>
 
-            <b-col cols="5">
+            <b-col cols="4">
               <b-nav-text>
               Local Pinamar<br />
               Totoras 174<br />
               02254-513484
               </b-nav-text>
             </b-col>
-
-            <b-col cols="7">
+            <b-col></b-col>
+            <b-col cols="6">
               <b-nav-text>
                 Local Valeria<br />
                 Espora y Urquiza<br />

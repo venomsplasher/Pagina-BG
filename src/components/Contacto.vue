@@ -75,6 +75,18 @@ export default {
             email:'',
             consulta:''
         }
-    }
+    },
+    computed:{
+        validarConsulta(){
+            if(this.nombreyapellido == ''|| this.telefono==''|| this.email==''|| this.consulta=='')
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+    },
 }
 </script>
