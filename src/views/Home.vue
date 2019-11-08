@@ -1,10 +1,7 @@
 <template>
   <div class="home">
     <div>
-      <div>
-        <b-row>
-          <b-col bg-danger></b-col>
-          <b-col cols="10">
+      <div class="container">
             <b-carousel
             id="carousel-w-animation"
             v-model="slide"
@@ -14,7 +11,7 @@
             indicators
             @sliding-start="onSlideStart"
             @sliding-end="onSlideEnd"
-            background="333A42"
+            img-width="100%"
             >
               <b-carousel-slide
                 :img-src="require('@/assets/Carousel/001.jpg')"
@@ -57,9 +54,7 @@
           img-height="100"
         ></b-carousel-slide> -->
             </b-carousel>
-          </b-col>
-          <b-col></b-col>
-        </b-row>
+
       </div>
     </div>
   </div>
@@ -88,5 +83,13 @@ export default {
       
     ]
   }),
+  methods: {
+      onSlideStart(slide) {
+        this.sliding = true
+      },
+      onSlideEnd(slide) {
+        this.sliding = false
+      }
+    }
 }
 </script>

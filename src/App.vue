@@ -53,7 +53,7 @@
     <div>
     <router-view/>
 
-    <b-navbar toggleable="lg" type="dark" variant="dark" style="" bottom>
+    <b-navbar toggleable="lg" type="dark" variant="dark" style="" bottom class="mt-5">
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
@@ -121,7 +121,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-color: #000000;
+  width: 100%;
 }
 
 #nav {
