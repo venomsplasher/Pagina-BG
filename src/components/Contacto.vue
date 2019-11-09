@@ -50,7 +50,7 @@
             <b-row>
                 <b-col cols="4"></b-col>
                     <b-col>
-                        <a :href="'mailto:juansolo1988@gmail.com ?subject=Consulta%20Presupuesto%20para%20BG%20Computacion &body=Nombre:%20'+this.nombreyapellido+'%0A'+'Telefono:%20'+this.telefono+'%0A'+'E-Mail:%20'+this.email+'%0A'+'Consulta:%20'+this.consultaUrl+'%0A%0A%0A%0A%0A%0A%0A%0A'">
+                        <a :href="'mailto:juansolo1988@gmail.com ?subject=Consulta%20Presupuesto%20para%20BG%20Computacion &body=Nombre:%20'+this.nombreyapellido+'%0A'+'Telefono:%20'+this.telefono+'%0A'+'E-Mail:%20'+this.email+'%0A'+'Consulta:%20%0A'+this.consultaUrl+'%0A%0A%0A%0A%0A%0A%0A%0A'">
                             <img class="imagen" style="display:block; margin:auto; padding-top:0%; width:100px"  src="http://www.suitdoctors.com/wp-content/uploads/2015/11/Email-Icon.png"/>
                         </a>
                         <div id="consultaemail">

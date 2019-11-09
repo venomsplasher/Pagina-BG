@@ -120,7 +120,19 @@ export default {
         //     }
         // },
         validarRegistro(){
-            if(this.titulo==undefined|| this.marca==undefined|| this.categoria==undefined|| this.precio==undefined|| this.url==undefined|| this.descripcion==undefined)
+            if(this.titulo==undefined|| 
+                this.marca==undefined|| 
+                this.categoria==undefined|| 
+                this.precio==undefined|| 
+                this.url==undefined|| 
+                this.descripcion==undefined||
+                this.titulo==''|| 
+                this.marca==''|| 
+                this.categoria==''|| 
+                this.precio==''|| 
+                this.url==''|| 
+                this.descripcion==''
+                )
             {
                 return true;
             }
