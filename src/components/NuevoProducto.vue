@@ -56,13 +56,12 @@
                        
                     >
                     </b-form-textarea>
-                    {{this.stockdisponible}}
                 </b-col>
                 
             </b-row>
             <b-button  class="mt-3" variant="info" :disabled="validarRegistro" @click="PostProducto()+showModal()">Guardar Producto</b-button>
             
-            <b-modal ref="modal-guardado-ok" hide-footer>
+            <b-modal ref="modal-guardado-ok" hide-footer title="Guardado exitoso">
                 <div class="d-block text-center">
                     <h3>Producto guardado correctamente.</h3>
                 </div>

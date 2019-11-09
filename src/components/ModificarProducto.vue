@@ -57,7 +57,7 @@
             </b-row>
             <b-button  class="mt-3" variant="info" :disabled="validarRegistro" @click="updateProducto()+showModal()">Actualizar Producto</b-button>
 
-            <b-modal ref="modal-modificado-ok" hide-footer>
+            <b-modal ref="modal-modificado-ok" hide-footer title="Modificacion exitosa">
                 <div class="d-block text-center">
                     <h3>Producto modificado correctamente.</h3>
                 </div>
