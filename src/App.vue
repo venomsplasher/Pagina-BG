@@ -18,12 +18,11 @@
             <b-navbar-nav class="ml-auto">
               <b-nav-item :to="{name:'home'}">INICIO</b-nav-item>
               <b-nav-item :to="{name:'catalogo'}" class="ml-3">CATALOGO</b-nav-item>
-              <b-nav-item :to="{name:'contacto'}"  class="ml-3">CONTACTO</b-nav-item>
-              <b-nav-item :to="{name:'login'}"  class="ml-3" v-if="!estaLogueado()" >LOGIN</b-nav-item>
+              <b-nav-item :to="{name:'contacto'}"  class="ml-3">CARRITO</b-nav-item>
+              <!-- <b-nav-item :to="{name:'login'}"  class="ml-3" v-if="!estaLogueado()" >LOGIN</b-nav-item> -->
               <b-nav-item :to="{name:'nuevoProducto'}"  class="ml-3" v-if="estaLogueado()" >AGREGAR PRODUCTO</b-nav-item>
-              <b-nav-item :to="{name:'modificarProducto'}"  class="ml-3" v-if="estaLogueado()" >MODIFICAR PRODUCTO</b-nav-item>
+              <!-- <b-nav-item :to="{name:'modificarProducto'}"  class="ml-3" v-if="estaLogueado()" >MODIFICAR PRODUCTO</b-nav-item> -->
               <b-nav-item :to="{name:'administrador'}" class="ml-auto" v-if="estaLogueado()">CATALOGO ADMIN</b-nav-item>
-              <b-nav-item class="ml-3" @click="logout" v-if="estaLogueado()">DESLOGEARSE</b-nav-item>
               
               <!-- <b-nav-item-dropdown text="Productos" class="ml-3" right>
                 <b-dropdown-item href="#">EN</b-dropdown-item>
@@ -56,10 +55,12 @@
     <b-navbar toggleable="lg" type="dark" variant="dark"  bottom class="mt-5">
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav class="ml-auto">
-          <b-row>
+        <b-navbar-nav>
+            
+            <b-nav-item :to="{name:'login'}" style="margin-left:2%" v-if="!estaLogueado()">ADMIN</b-nav-item>
+            <b-nav-item class="ml-3" @click="logout" v-if="estaLogueado()">CERRAR SESION</b-nav-item>
 
-            <b-col cols="5">
+            <!-- <b-col cols="5">
               <b-nav-text>
               Local Pinamar<br />
               Totoras 174<br />
@@ -71,11 +72,9 @@
               <b-nav-text>
                 Local Valeria<br />
                 Espora y Urquiza<br />
-                02254-513484
               </b-nav-text>      
-            </b-col>
+            </b-col> -->
 
-          </b-row>
         </b-navbar-nav>
       <b-navbar-nav class="ml-auto">
         </b-navbar-nav>

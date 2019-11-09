@@ -93,8 +93,18 @@ export default {
                 return false;
             }
         },
-        validarInsert(){
-            if(this.titulo == ''|| this.stock==''|| this.precio=='')
+        // validarInsert(){
+        //     if(this.titulo == ''|| this.stock==''|| this.precio=='')
+        //     {
+        //         return true;
+        //     }
+        //     else
+        //     {
+        //         return false;
+        //     }
+        // },
+        validarRegistro(){
+            if(this.titulo == ''|| this.marca==''|| this.categoria==''|| this.precio==''|| this.url==''|| this.descripcion=='')
             {
                 return true;
             }

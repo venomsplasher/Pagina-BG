@@ -27,11 +27,20 @@
                 <!-- <b-input-group prepend="Consulta" class="mt-3">
                     <b-form-input></b-form-input>
                 </b-input-group> -->
+                
+                <div style="width:100%; display:inline-flex">
+                    <p style="font-size:20px; text-align:start; margin-top:15px; ">Consultar por:</p>
+                    <b-button class="mt-3" variant="danger" style="margin-left:70%" @click="limpiarCarrito()">Vaciar</b-button>
+                </div>
+                
                 <b-form-textarea
                     v-model="consulta"
                     id="textarea-default"
-                    placeholder="Consulta"
+                    placeholder="Su carrito"
                     class="mt-3"
+                    rows="12"
+                    readonly="true"
+                    no-resize="true"
                 ></b-form-textarea>
             </b-col>
         </b-row>
@@ -90,6 +99,10 @@ export default {
             }
             //armo la string para que quede bien en la url 
 
+        },
+        limpiarCarrito(){
+            this.$store.commit('vaciarCarrito');
+            this.consulta="Carrito Vacio";
         }
     },
     mounted(){

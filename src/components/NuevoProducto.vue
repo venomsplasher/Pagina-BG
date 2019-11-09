@@ -47,7 +47,7 @@
                 </b-col>
                 
             </b-row>
-             <b-button  class="mt-3" variant="info" :disabled="validarInsert" @click="PostProducto()">Guardar Producto</b-button>
+             <b-button  class="mt-3" variant="info" :disabled="validarRegistro" @click="PostProducto()">Guardar Producto</b-button>
         </b-container>
     
 </template>
@@ -92,10 +92,20 @@ export default {
                 return false;
             }
         },
-        validarInsert(){
-            if(this.titulo == ''|| this.stock==''|| this.precio=='')
+        // validarInsert(){
+        //     if(this.titulo == ''|| this.stock==''|| this.precio=='')
+        //     {
+        //         return true;
+        //     }
+        //     else
+        //     {
+        //         return false;
+        //     }
+        // },
+        validarRegistro(){
+            if(this.titulo == ''|| this.marca==''|| this.categoria==''|| this.precio==''|| this.url==''|| this.descripcion=='')
             {
-                return false;
+                return true;
             }
             else
             {

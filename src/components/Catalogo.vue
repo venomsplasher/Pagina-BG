@@ -167,9 +167,10 @@
             </template>
 
             <template v-slot:cell(actions)="row">
-                <b-button size="sm" @click="agregarAlCarrito(row.item)" class="mr-1">
-                Agregar al carrito
+                <b-button size="sm" @click="agregarAlCarrito(row.item,row.index)" class="mr-1">
+                {{ agregado.includes(row.index) ? 'Agregado' : 'Agregar al carrito' }}
                 </b-button>
+                
                 <b-button size="sm" @click="row.toggleDetails">
                 Mostrar {{ row.detailsShowing ? 'menos' : 'mas' }} 
                 </b-button>
@@ -228,6 +229,7 @@ export default {
       return {
         urlprueba:'https://images-na.ssl-images-amazon.com/images/I/41CCazqracL.jpg',
         prueba:[],
+        agregado:[],
         items: []
 
         ,
@@ -289,15 +291,15 @@ export default {
         this.infoModal.content = JSON.stringify(item, null, 2)
         this.$root.$emit('bv::show::modal', this.infoModal.id, button)
       },
-      agregarAlCarrito(item){
+      agregarAlCarrito(item,index){
           var prod = {
               titulo : item.titulo,
               marca: item.marca,
               cantidad : '5',
 
           }
-          alert(prod);
           this.$store.commit('agregarProd',prod);
+          this.agregado.push(index);
       },
       resetInfoModal() {
         this.infoModal.title = ''

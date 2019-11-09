@@ -14,6 +14,11 @@ export default new Vuex.Store({
     },
     agregarProd(state,producto){
       state.carrito.push(producto);
+    },
+    vaciarCarrito (state){
+      for (var i in state.carrito+1){
+        state.carrito.pop();
+      }
     }
   },
   actions: {
