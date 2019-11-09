@@ -38,7 +38,7 @@
                 </b-col>
                 <b-col cols="8" v-if="url!=''">
 
-                    <b-img center :src="url" alt="Imagen inexistente"></b-img>
+                    <b-img center :src="url" alt="Imagen inexistente" style="width:500px ;height:500px"></b-img>
 
                 </b-col>
 
@@ -65,7 +65,7 @@
                 <div class="d-block text-center">
                     <h3>Producto guardado correctamente.</h3>
                 </div>
-                <b-button class="mt-3" variant="outline-success" block @click="limpiarCampos()+hideModal()+gotoAdministrador()">Aceptar</b-button>
+                <b-button class="mt-3" variant="outline-success" block @click="limpiarCampos()+hideModal()">Aceptar</b-button>
             </b-modal>
             
             </b-container>

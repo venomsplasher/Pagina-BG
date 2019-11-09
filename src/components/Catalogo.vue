@@ -150,15 +150,15 @@
             </template>
 
             <template v-slot:cell(actions)="row">
-                <b-button size="sm"  @click="showModal()+setearItem(row.item,row.index)" class="mr-1" variant="primary">
+                <b-button size="sm"  @click="showModal()+setearItem(row.item,row.index)" class="mr-1" :variant="agregado.includes(row.index) ? 'success' : 'primary'">
                      
-                {{ agregado.includes(row.index) ? 'Agregado' : 'Agregar al carrito' }}
+                 <i class="material-icons" id="tienda">add_shopping_cart </i>{{  }}
                 </b-button>
                
 
                 
-                <b-button size="sm" @click="row.toggleDetails" variant="success">
-                {{ row.detailsShowing ? '-' : '+' }} 
+                <b-button size="sm" @click="row.toggleDetails" variant="warning">
+                <i class="material-icons" id="tienda" style="color:white">remove_red_eye</i>
                 </b-button>
             </template>
 
@@ -168,7 +168,7 @@
                     <b-card no-body class="overflow-hidden" style="width:auto; height:auto;max-width:auto; margin-top:5px;margin-bottom:5px">
                         <b-row no-gutters>
                         <b-col md="6">
-                            <b-img :src="row.item.url" style="width:auto" class="rounded-0"></b-img>
+                            <b-img :src="row.item.url" style="width:600px ;height:600px" class="rounded-0"></b-img>
                         </b-col>
                         <b-col md="6">
                             <b-card-body >
@@ -261,6 +261,7 @@ export default {
     mounted() {
       // Set the initial number of items
       this.totalRows = this.items.length;
+      this.agregado = this.$store.getters.getSeleccionados;
     //   this.getProducto();
      
     },
@@ -292,7 +293,8 @@ export default {
 
           }
           this.$store.commit('agregarProd',prod);
-          this.agregado.push(index);
+          this.$store.commit('agregarSeleccionado',index);
+          
       },
       setearItem(item,index){
           var prod = {
@@ -319,7 +321,6 @@ export default {
         // when the modal has hidden
         this.$refs['my-modal'].toggle('#toggle-btn')
       }
-      
   }}
 
 </script>

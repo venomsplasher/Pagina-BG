@@ -36,7 +36,7 @@
                 </b-col>
                 <b-col cols="8" v-if="url!=''">
 
-                    <b-img center :src="url" alt="Imagen inexistente"></b-img>
+                    <b-img center :src="url" alt="Imagen inexistente" style="width:500px ;height:500px"></b-img>
 
                 </b-col>
 

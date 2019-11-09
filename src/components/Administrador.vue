@@ -4,6 +4,7 @@
                     <div class="d-block text-center">
                         <h1 style="color:red"> REALMENTE DESEA ELIMINAR EL PRODUCTO:</h1>
                         <p style="text-align:start;font-weigth:800">{{itemBorrar.titulo}}</p> 
+                        <b-img :src="itemBorrar.url" style="width:300px ;height:300px" class="rounded-0"></b-img>
 
                     </div>
                     <b-button class="mt-3" variant="outline-danger" block @click="hideModal()+eliminarProducto(itemBorrar.key)" >ELIMINAR</b-button>
@@ -144,13 +145,13 @@
 
             <template v-slot:cell(actions)="row">
                 <b-button size="sm" @click="mandarInfo(row.item)" class="mr-1">
-                Editar
+                <i class="material-icons" id="tienda">edit</i>
                 </b-button>
                 <b-button size="sm" @click="row.toggleDetails" variant="success">
-                {{ row.detailsShowing ? '-' : '+' }} 
+                <i class="material-icons" id="tienda">remove_red_eye</i>
                 </b-button>
                 <b-button variant="danger" size="sm"  class="ml-1" @click="showModal()+setearItem(row.item,row.index,row.item['.key'])">
-                X 
+               <i class="material-icons" id="tienda">delete_forever</i>
                 </b-button>
  <!-- @click="eliminarProducto(row.item['.key'])" -->
 
@@ -167,10 +168,10 @@
                
                 </b-card> -->
                 <div class="container">
-                    <b-card no-body class="overflow-hidden" style="width:auto; height:auto;max-width:auto; margin-top:5px;margin-bottom:5px">
+                    <b-card no-body style="width:auto; height:auto;max-width:auto; margin-top:5px;margin-bottom:5px">
                         <b-row no-gutters>
                         <b-col md="6">
-                            <b-img :src="row.item.url" style="width:auto" class="rounded-0"></b-img>
+                            <b-img :src="row.item.url" style="width:500px ;height:500px" class="rounded-0"></b-img>
                         </b-col>
                         <b-col md="6">
                             <b-card-body >
@@ -179,7 +180,7 @@
 
                             <b-card-text>
                                 
-                                <h5>{{row.item.descripcion}}</h5><br>
+                                <h5 style="witdh:500px;text-align:center">{{row.item.descripcion}}</h5><br>
                                 <h2 style="color:green">${{row.item.precio}}</h2>                                
 
                             </b-card-text>
@@ -294,7 +295,8 @@ export default {
           var prod = {
               titulo : item.titulo,
               marca: item.marca,
-              index: index , 
+              index: index ,
+              url: item.url, 
               key: key
 
           }

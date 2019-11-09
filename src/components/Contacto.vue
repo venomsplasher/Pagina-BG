@@ -54,6 +54,7 @@
                             <img class="imagen" style="display:block; margin:auto; padding-top:0%; width:100px"  src="http://www.suitdoctors.com/wp-content/uploads/2015/11/Email-Icon.png"/>
                         </a>
                         <div id="consultaemail">
+                            
                             <p>Consultanos via Email</p>   
                         </div>
                     </b-col>
@@ -102,6 +103,7 @@ export default {
         },
         limpiarCarrito(){
             this.$store.commit('vaciarCarrito');
+            this.$store.commit('vaciarSeleccionados');
             this.consulta="Carrito Vacio";
         }
     },
