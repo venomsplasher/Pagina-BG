@@ -18,6 +18,16 @@
                     <p style="font-size:20px;text-align:start">Precio</p>
                     <b-form-input type="text" v-model="precio" placeholder="valor no nulo"></b-form-input>
                 </b-col>
+                <b-col>
+                    <p style="font-size:20px;text-align:start">Stock Disponible</p>
+                    <b-form-checkbox
+                        id="checkstock"
+                        v-model="stockdisponible"
+                        name="checkstock"
+                        value="Si"
+                        unchecked-value="No"
+                    ></b-form-checkbox>
+                </b-col>
 
             </b-row>
 
@@ -43,13 +53,24 @@
                         placeholder="Ingresa una descripcion"
                         rows="3"
                         max-rows="6"
-                    ></b-form-textarea>
+                       
+                    >
+                    </b-form-textarea>
+                    {{this.stockdisponible}}
                 </b-col>
                 
             </b-row>
-             <b-button  class="mt-3" variant="info" :disabled="validarRegistro" @click="PostProducto()">Guardar Producto</b-button>
-        </b-container>
-    
+            <b-button  class="mt-3" variant="info" :disabled="validarRegistro" @click="PostProducto()+showModal()">Guardar Producto</b-button>
+            
+            <b-modal ref="modal-guardado-ok" hide-footer>
+                <div class="d-block text-center">
+                    <h3>Producto guardado correctamente.</h3>
+                </div>
+                <b-button class="mt-3" variant="outline-success" block @click="limpiarCampos()+hideModal()+gotoAdministrador()">Aceptar</b-button>
+            </b-modal>
+            
+            </b-container>
+        
 </template>
 <style>
 
@@ -65,13 +86,12 @@ export default {
     data() {
         return {
             titulo: '',
-            stock: '',
+            stockdisponible: '',
             marca:'',
             categoria:'',
             descripcion:'',
             url:'',
             precio:''
-            
         }
     },
     firebase: {
@@ -117,16 +137,32 @@ export default {
         PostProducto(){
             Productos.push({
                 titulo: this.titulo,
-                stock: this.stock,
+                stockdisponible: this.stockdisponible,
                 marca: this.marca,
                 categoria: this.categoria,
                 descripcion: this.descripcion,
                 url: this.url,
                 precio: this.precio
                 });
+        },
+        gotoAdministrador(){
+            this.$router.push('./administrador');
+        },
+        showModal() {
+            this.$refs['modal-guardado-ok'].show()
+        },
+        hideModal() {
+            this.$refs['modal-guardado-ok'].hide()
+        },
+        limpiarCampos(){
+            this.titulo="",
+            this.marca="",
+            this.categoria="",
+            this.url="",
+            this.descripcion="",
+            this.precio="",
+            this.stockdisponible=""
         }
-     
     },
-   
-}
+}   
 </script>

@@ -238,7 +238,7 @@ export default {
           { key: 'titulo', label: 'Titulo', sortable: true, sortDirection: 'desc' },
           { key: 'marca', label: 'Marca', sortable: true, class: 'text-center' },
           {
-            key: 'stock',
+            key: 'stockdisponible',
             label: 'Stock disponible',
             formatter: (value, key, item) => {
               return value ? 'Si' : 'No'

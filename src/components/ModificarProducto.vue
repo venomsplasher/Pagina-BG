@@ -17,7 +17,16 @@
                     <p style="font-size:20px;text-align:start">Precio</p>
                     <b-form-input type="text" v-model="precio" placeholder="valor no nulo"></b-form-input>
                 </b-col>
-
+                <b-col>
+                    <p style="font-size:20px;text-align:start">Stock Disponible</p>
+                    <b-form-checkbox
+                        id="checkstock"
+                        v-model="stockdisponible"
+                        name="checkstock"
+                        value="Si"
+                        unchecked-value="No"
+                    ></b-form-checkbox>
+                </b-col>
             </b-row>
 
             <b-row class="mt-5">
@@ -46,7 +55,15 @@
                 </b-col>
                 
             </b-row>
-             <b-button  class="mt-3" variant="info" :enabled="validarInsert" @click="updateProducto()">Actualizar Producto</b-button>
+            <b-button  class="mt-3" variant="info" :disabled="validarRegistro" @click="updateProducto()+showModal()">Actualizar Producto</b-button>
+
+            <b-modal ref="modal-modificado-ok" hide-footer>
+                <div class="d-block text-center">
+                    <h3>Producto modificado correctamente.</h3>
+                </div>
+                <b-button class="mt-3" variant="outline-success" block @click="limpiarCampos()+hideModal()+gotoAdministrador()">Aceptar</b-button>
+            </b-modal>
+
         </b-container>
     
 </template>
@@ -64,7 +81,7 @@ export default {
     data() {
         return {
             titulo: '',
-            stock: '',
+            stockdisponible: '',
             marca:'',
             categoria:'',
             descripcion:'',
@@ -72,7 +89,6 @@ export default {
             precio:'',
             ProductoStore:{},
             productos:[]
-            
         }
     },
     firebase: {
@@ -104,7 +120,7 @@ export default {
         //     }
         // },
         validarRegistro(){
-            if(this.titulo == ''|| this.marca==''|| this.categoria==''|| this.precio==''|| this.url==''|| this.descripcion=='')
+            if(this.titulo==undefined|| this.marca==undefined|| this.categoria==undefined|| this.precio==undefined|| this.url==undefined|| this.descripcion==undefined)
             {
                 return true;
             }
@@ -115,10 +131,28 @@ export default {
         }
     },
     methods:{
+        gotoAdministrador(){
+            this.$router.push('./administrador');
+        },
+        showModal() {
+            this.$refs['modal-modificado-ok'].show();
+        },
+        hideModal() {
+            this.$refs['modal-modificado-ok'].hide();
+        },
+        limpiarCampos(){
+            this.titulo="",
+            this.marca="",
+            this.categoria="",
+            this.url="",
+            this.descripcion="",
+            this.precio="",
+            this.stockdisponible=""
+        },
         PostProducto(){
             Productos.push({
                 titulo: this.titulo,
-                stock: this.stock,
+                stockdisponible: this.stockdisponible,
                 marca: this.marca,
                 categoria: this.categoria,
                 descripcion: this.descripcion,
@@ -133,22 +167,21 @@ export default {
         },
         armarProdSeleccionado(){
             this.titulo = this.ProductoStore.titulo;
-            this.stock = this.ProductoStore.stock;
+            this.stockdisponible = this.ProductoStore.stockdisponible;
             this.marca = this.ProductoStore.marca;
             this.categoria = this.ProductoStore.categoria;
             this.descripcion = this.ProductoStore.descripcion;
             this.url = this.ProductoStore.url;
             this.precio = this.ProductoStore.precio;
             
-        }
-        ,
+        },
         updateProducto(){
             var key = this.ProductoStore['.key']
             try {
             Productos.child(key).update({
 
                 titulo: this.titulo,
-                stock: this.stock,
+                stockdisponible: this.stockdisponible,
                 marca: this.marca,
                 categoria: this.categoria,
                 descripcion: this.descripcion,
@@ -161,9 +194,9 @@ export default {
                 alert("anduvo ejhem como el orto");
             }
         }
-     
     },
-   mounted(){
+    
+    mounted(){
        this.getProductoFromStore();
     //    this.idProducto = this.$store.getters.getIdProducto;
     //     alert('el id que vino desde la base es: '+this.idProducto);
