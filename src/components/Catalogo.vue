@@ -1,37 +1,20 @@
 <template>
-<!-- <div class="container">
-   
-       
-        <div v-for="value in respuesta" :key="value">
-            {{ value.Precio }}
-        <b-card no-body class="overflow-hidden" style="max-width: 540px;">
-            <b-row no-gutters>
-            <b-col md="6">
-                <b-card-img src="https://ecolorinternacional.com/wp-content/uploads/2019/10/CANON-G2110-400x400.jpg" class="rounded-0"></b-card-img>
-            </b-col>
-            <b-col md="6">
-                <b-card-body title="">
-                    <h1>{{this.titulo}}</h1>
-                <b-card-text>
-                {{this.descripcionProducto}}
-                </b-card-text>
 
-                <h1 style="color:green">${{this.precioProducto}}</h1>
-                
-                <div>
-                    <b-button variant="outline-secondary">Ver Mas</b-button>
-                    <b-button variant="success" style="margin-left:5px">Agregar </b-button>
-                </div>
-
-                </b-card-body>
-            </b-col>
-            </b-row>
-        </b-card>
-        </div>
-    
-</div> -->
-  
         <b-container fluid>
+                            <b-modal ref="my-modal" hide-footer title="Agregar al Carrito">
+                    <div class="d-block text-center">
+                        <p style="text-align:start;font-weigth:800">{{itemSeleccionado.titulo}}</p>
+                        <b-row class="my-1">
+                            <b-col sm="2">
+                            <label for="input-small">Cantidad:</label>
+                            </b-col>
+                            <b-col sm="10">
+                            <b-form-input v-model="cantidad" :state="cantidad>0" id="input-small" size="sm" placeholder="Ingresar Cantidad" type="number"></b-form-input>
+                            </b-col>
+                        </b-row>
+                    </div>
+                    <b-button class="mt-3" variant="outline-success" block @click="hideModal()+agregarAlCarrito(itemSeleccionado,itemSeleccionado.index)" v-if="cantidad>0">Confirmar</b-button>
+                </b-modal>
             <!-- User Interface controls -->
             <b-row>
             <b-col lg="6" class="my-1">
@@ -77,7 +60,7 @@
 
             <b-col lg="6" class="my-1">
                 <b-form-group
-                label="Filtro"
+                label="Buscar"
                 label-cols-sm="3"
                 label-align-sm="right"
                 label-size="sm"
@@ -100,7 +83,7 @@
 
             <b-col lg="6" class="my-1">
                 <b-form-group
-                label="Filtrar por"
+                label="Buscar por"
                 label-cols-sm="3"
                 label-align-sm="right"
                 label-size="sm"
@@ -116,7 +99,7 @@
 
             <b-col sm="5" md="6" class="my-1">
                 <b-form-group
-                label="Articulos por pagina "
+                label="Mostrar los primeros : "
                 label-cols-sm="6"
                 label-cols-md="4"
                 label-cols-lg="3"
@@ -134,7 +117,7 @@
                 </b-form-group>
             </b-col>
 
-            <b-col sm="7" md="6" class="my-1">
+            <!-- <b-col sm="7" md="6" class="my-1">
                 <b-pagination
                 v-model="currentPage"
                 :total-rows="totalRows"
@@ -143,7 +126,7 @@
                 size="sm"
                 class="my-0"
                 ></b-pagination>
-            </b-col>
+            </b-col> -->
             </b-row>
 
             <!-- Main table element -->
@@ -167,23 +150,20 @@
             </template>
 
             <template v-slot:cell(actions)="row">
-                <b-button size="sm" @click="agregarAlCarrito(row.item,row.index)" class="mr-1">
+                <b-button size="sm"  @click="showModal()+setearItem(row.item,row.index)" class="mr-1" variant="primary">
+                     
                 {{ agregado.includes(row.index) ? 'Agregado' : 'Agregar al carrito' }}
                 </b-button>
+               
+
                 
-                <b-button size="sm" @click="row.toggleDetails">
-                Mostrar {{ row.detailsShowing ? 'menos' : 'mas' }} 
+                <b-button size="sm" @click="row.toggleDetails" variant="success">
+                {{ row.detailsShowing ? '-' : '+' }} 
                 </b-button>
             </template>
 
             <template v-slot:row-details="row">
-                <!-- <b-card>
-                    
-                    <h2 v-for="(value, key) in row.item" :key="key">
-                        {{ key }}: {{ value }}
-                    </h2>
-               
-                </b-card> -->
+
                 <div class="container">
                     <b-card no-body class="overflow-hidden" style="width:auto; height:auto;max-width:auto; margin-top:5px;margin-bottom:5px">
                         <b-row no-gutters>
@@ -230,6 +210,8 @@ export default {
         urlprueba:'https://images-na.ssl-images-amazon.com/images/I/41CCazqracL.jpg',
         prueba:[],
         agregado:[],
+        cantidad:'',
+        itemSeleccionado:{},
         items: []
 
         ,
@@ -240,9 +222,6 @@ export default {
           {
             key: 'stockdisponible',
             label: 'Stock disponible',
-            formatter: (value, key, item) => {
-              return value ? 'Si' : 'No'
-            },
             sortable: true,
             sortByFormatted: true,
             filterByFormatted: true
@@ -251,12 +230,12 @@ export default {
         ],
         totalRows: 1,
         currentPage: 1,
-        perPage: 5,
-        pageOptions: [5, 10, 15],
+        perPage: 100,
+        pageOptions: [ 5,10,20,50 , 100, 200 , 300,500],
         sortBy: '',
         sortDesc: false,
         sortDirection: 'asc',
-        filter: null,
+        filter: ' ',
         filterOn: [],
         infoModal: {
           id: 'info-modal',
@@ -286,78 +265,61 @@ export default {
      
     },
     methods: {
+        
+        onFiltered(filteredItems) {
+        // Trigger pagination to update the number of buttons/pages due to filtering
+        this.totalRows = filteredItems.length
+        this.currentPage = 1
+      },
       info(item, index, button) {
         this.infoModal.title = `Row index: ${index}`
         this.infoModal.content = JSON.stringify(item, null, 2)
         this.$root.$emit('bv::show::modal', this.infoModal.id, button)
       },
+    //   validarModal(){
+    //       if(this.cantidad>0){
+    //           return true
+    //        }else{
+    //            return false
+    //        }
+    //   },
       agregarAlCarrito(item,index){
+
           var prod = {
               titulo : item.titulo,
               marca: item.marca,
-              cantidad : '5',
+              cantidad : this.cantidad,
 
           }
           this.$store.commit('agregarProd',prod);
           this.agregado.push(index);
       },
+      setearItem(item,index){
+          var prod = {
+              titulo : item.titulo,
+              marca: item.marca,
+              index: index  
+
+          }
+           this.itemSeleccionado = prod
+      },
       resetInfoModal() {
         this.infoModal.title = ''
         this.infoModal.content = ''
       },
-      onFiltered(filteredItems) {
-        // Trigger pagination to update the number of buttons/pages due to filtering
-        this.totalRows = filteredItems.length
-        this.currentPage = 1
+
+      showModal() {
+        this.$refs['my-modal'].show()
       },
-      getProducto(){
-            // axios.get('http://www.mocky.io/v2/5dbd24963300004d2f16a140', {
-                           
-            //             }).then(response => {
-            //                 // this.titulo = response.data.Titulo;
-            //                 // this.precioProducto = response.data.Precio;
-            //                 // this.descripcionProducto = response.data.Descripcion;
-            //                 this.items = response.data;
-            //                 console.log(response.data);
-            //                 console.log("Respuesta: "+this.respuesta);
-            //             }).catch(e => {
-            //                 console.log(e);
-            //             })
-    }
-  
+      hideModal() {
+        this.$refs['my-modal'].hide()
+      },
+      toggleModal() {
+        // We pass the ID of the button that we want to return focus to
+        // when the modal has hidden
+        this.$refs['my-modal'].toggle('#toggle-btn')
+      }
+      
   }}
-    
-    // data(){
-    //     return{
-    //         precioProducto:'',
-    //         titulo:"",
-    //         descripcionProducto:'',
-    //         respuesta:''
 
-    //     }
-    // },
-    // methods:{
-    //     getProducto(){
-    //         axios.get('http://www.mocky.io/v2/5dbd0021330000ad2416a109', {
-                           
-    //                     }).then(response => {
-    //                         // this.titulo = response.data.Titulo;
-    //                         // this.precioProducto = response.data.Precio;
-    //                         // this.descripcionProducto = response.data.Descripcion;
-    //                         this.respuesta = response.data;
-    //                         console.log(response.data);
-    //                         console.log("Respuesta: "+this.respuesta);
-    //                     }).catch(e => {
-    //                         console.log(e);
-    //                     })
-    //     }
-    // },
-    // mounted: function () {
-    //     this.$nextTick(function () {
-         
-    //         this.getProducto();
-
-    //     })
-    // }
-//}
 </script>

@@ -1,5 +1,14 @@
 <template>
         <b-container fluid>
+                <b-modal ref="my-modal" hide-footer title="ATENCION">
+                    <div class="d-block text-center">
+                        <h1 style="color:red"> REALMENTE DESEA ELIMINAR EL PRODUCTO:</h1>
+                        <p style="text-align:start;font-weigth:800">{{itemBorrar.titulo}}</p> 
+
+                    </div>
+                    <b-button class="mt-3" variant="outline-danger" block @click="hideModal()+eliminarProducto(itemBorrar.key)" >ELIMINAR</b-button>
+                    <b-button class="mt-3" variant="outline-success" block @click="hideModal()" >CANCELAR</b-button>
+                </b-modal>
             <b-row>
             <b-col lg="6" class="my-1">
                 <b-form-group
@@ -44,7 +53,7 @@
 
             <b-col lg="6" class="my-1">
                 <b-form-group
-                label="Filtro"
+                label="Buscar"
                 label-cols-sm="3"
                 label-align-sm="right"
                 label-size="sm"
@@ -67,7 +76,7 @@
 
             <b-col lg="6" class="my-1">
                 <b-form-group
-                label="Filtrar por"
+                label="Buscar por"
                 label-cols-sm="3"
                 label-align-sm="right"
                 label-size="sm"
@@ -83,7 +92,7 @@
 
             <b-col sm="5" md="6" class="my-1">
                 <b-form-group
-                label="Articulos por pagina "
+                label="Mostrar los primeros: "
                 label-cols-sm="6"
                 label-cols-md="4"
                 label-cols-lg="3"
@@ -101,7 +110,7 @@
                 </b-form-group>
             </b-col>
 
-            <b-col sm="7" md="6" class="my-1">
+            <!-- <b-col sm="7" md="6" class="my-1">
                 <b-pagination
                 v-model="currentPage"
                 :total-rows="totalRows"
@@ -110,8 +119,8 @@
                 size="sm"
                 class="my-0"
                 ></b-pagination>
-            </b-col>
-            </b-row>
+            </b-col>-->
+            </b-row> 
 
             <!-- Main table element -->
             <b-table
@@ -137,10 +146,13 @@
                 <b-button size="sm" @click="mandarInfo(row.item)" class="mr-1">
                 Editar
                 </b-button>
-                <b-button size="sm" @click="row.toggleDetails">
-                Mostrar {{ row.detailsShowing ? 'menos' : 'mas' }} 
+                <b-button size="sm" @click="row.toggleDetails" variant="success">
+                {{ row.detailsShowing ? '-' : '+' }} 
                 </b-button>
-
+                <b-button variant="danger" size="sm"  class="ml-1" @click="showModal()+setearItem(row.item,row.index,row.item['.key'])">
+                X 
+                </b-button>
+ <!-- @click="eliminarProducto(row.item['.key'])" -->
 
 
 
@@ -201,6 +213,7 @@ export default {
         urlprueba:'https://images-na.ssl-images-amazon.com/images/I/41CCazqracL.jpg',
         abrirModal:false,
         prueba:[],
+        itemBorrar:{},
         items: []
 
         ,
@@ -211,9 +224,6 @@ export default {
           {
             key: 'stockdisponible',
             label: 'Stock disponible',
-            formatter: (value, key, item) => {
-              return value ? 'Si' : 'No'
-            },
             sortable: true,
             sortByFormatted: true,
             filterByFormatted: true
@@ -222,8 +232,8 @@ export default {
         ],
         totalRows: 1,
         currentPage: 1,
-        perPage: 5,
-        pageOptions: [5, 10, 15],
+        perPage: 100,
+        pageOptions: [ 5,10,20,50 , 100, 200 , 300,500],
         sortBy: '',
         sortDesc: false,
         sortDirection: 'asc',
@@ -277,20 +287,30 @@ export default {
         this.totalRows = filteredItems.length
         this.currentPage = 1
       },
-      getProducto(){
-            // axios.get('http://www.mocky.io/v2/5dbd24963300004d2f16a140', {
-                           
-            //             }).then(response => {
-            //                 // this.titulo = response.data.Titulo;
-            //                 // this.precioProducto = response.data.Precio;
-            //                 // this.descripcionProducto = response.data.Descripcion;
-            //                 this.items = response.data;
-            //                 console.log(response.data);
-            //                 console.log("Respuesta: "+this.respuesta);
-            //             }).catch(e => {
-            //                 console.log(e);
-            //             })
-    }
+      eliminarProducto(key){
+        Productos.child(key).remove();
+      },
+      setearItem(item,index,key){
+          var prod = {
+              titulo : item.titulo,
+              marca: item.marca,
+              index: index , 
+              key: key
+
+          }
+           this.itemBorrar = prod
+      },
+      showModal() {
+        this.$refs['my-modal'].show()
+      },
+      hideModal() {
+        this.$refs['my-modal'].hide()
+      },
+      toggleModal() {
+        // We pass the ID of the button that we want to return focus to
+        // when the modal has hidden
+        this.$refs['my-modal'].toggle('#toggle-btn')
+      }
   
   }}
     
