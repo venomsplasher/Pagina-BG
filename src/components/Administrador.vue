@@ -229,6 +229,7 @@ export default {
             sortByFormatted: true,
             filterByFormatted: true
           },
+          { key: 'precio', label: 'Precio' ,sortable: true, sortDirection: 'asc' },
           { key: 'actions', label: 'Opciones' }
         ],
         totalRows: 1,

@@ -35,6 +35,17 @@ let router = new VueRouter({
     }
     ,
     {
+      path: '/carrito',
+      name: 'carrito',
+      component: () => import('../views/CarritoView.vue')
+      ,
+      meta:{
+        requiresGuest:false
+        
+      }
+    }
+    ,
+    {
       path: '/contacto',
       name: 'contacto',
       component: () => import('../views/ContactoView.vue')

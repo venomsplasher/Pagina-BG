@@ -9,7 +9,6 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import './firebase';
 
-
  import {VueFire} from 'vuefire'
 import { firestorePlugin } from 'vuefire'
 import { rtdbPlugin } from 'vuefire'

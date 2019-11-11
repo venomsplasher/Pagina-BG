@@ -18,8 +18,8 @@
             <b-navbar-nav class="ml-auto">
               <b-nav-item :to="{name:'home'}"><i class="material-icons" id="tienda">home</i><p>INICIO</p></b-nav-item>
               <b-nav-item :to="{name:'catalogo'}" class="ml-3"><i class="material-icons" id="tienda">storefront</i> <p>CATALOGO</p></b-nav-item>
-              
-              <b-nav-item :to="{name:'contacto'}"  class="ml-3"> <i class="material-icons" id="tienda">local_grocery_store</i> <p class="ITEM">CARRITO</p></b-nav-item>
+              <b-nav-item :to="{name:'carrito'}"  class="ml-3"> <i class="material-icons" id="tienda">local_grocery_store</i> <p class="ITEM">CARRITO</p></b-nav-item>
+              <b-nav-item :to="{name:'contacto'}" class="ml-3"><i class="material-icons" id="tienda">person_pin</i> <p>CONTACTO</p></b-nav-item>
               <!-- <b-nav-item :to="{name:'login'}"  class="ml-3" v-if="!estaLogueado()" >LOGIN</b-nav-item> -->
               <b-nav-item :to="{name:'nuevoProducto'}"  class="ml-3" v-if="estaLogueado()" ><i class="material-icons" id="tienda">cloud_upload</i><p>AGREGAR PRODUCTO</p></b-nav-item>
               <!-- <b-nav-item :to="{name:'modificarProducto'}"  class="ml-3" v-if="estaLogueado()" >MODIFICAR PRODUCTO</b-nav-item> -->
@@ -51,16 +51,17 @@
       </div>
     </div>
     <div>
-    <div style="width:100%;overflow-x: hidden">
+    <div style="width:100%;overflow-x: hidden;min-height: 502px;">
       <router-view/>
     </div>
-    <b-navbar toggleable="lg" type="dark" variant="dark"  bottom class="mt-5">
+    <b-navbar toggleable="lg" type="dark" variant="dark"  sticky="true" >
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
             
             <b-nav-item :to="{name:'login'}" style="margin-left:2%" v-if="!estaLogueado()"><i class="material-icons" id="tienda">perm_identity</i><p>ADMIN</p></b-nav-item>
             <b-nav-item class="ml-3" @click="logout" v-if="estaLogueado()"><i class="material-icons" id="tienda">exit_to_app</i><p>CERRAR SESION</p></b-nav-item>
+             <b-nav-item class="ml-auto" style="margin-rigth:0px"></b-nav-item>
 
             <!-- <b-col cols="5">
               <b-nav-text>
@@ -78,11 +79,11 @@
             </b-col> -->
 
         </b-navbar-nav>
-      <b-navbar-nav class="ml-auto">
-        </b-navbar-nav>
+   
       </b-collapse>
+       <i class="material-icons" style="color:white;margin-right:5px;margin-bottom:5px">copyright</i><p style="color:white" >Black Horse Software™ 2019</p>
     </b-navbar>
-    
+
     </div>
   </div>
 </template>

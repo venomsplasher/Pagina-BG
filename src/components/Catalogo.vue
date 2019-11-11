@@ -1,5 +1,5 @@
 <template>
-
+<div style="min-height: 500px;">
         <b-container fluid>
                             <b-modal ref="my-modal" hide-footer title="Agregar al Carrito">
                     <div class="d-block text-center">
@@ -149,6 +149,7 @@
                 {{ row.value.first }} {{ row.value.last }}
             </template>
 
+
             <template v-slot:cell(actions)="row">
                 <b-button size="sm"  @click="showModal()+setearItem(row.item,row.index)" class="mr-1" :variant="agregado.includes(row.index) ? 'success' : 'primary'">
                      
@@ -194,7 +195,7 @@
             <pre>{{ infoModal.content }}</pre>
             </b-modal>
         </b-container>
-    
+    </div>
 </template>
 <style>
 
@@ -226,6 +227,7 @@ export default {
             sortByFormatted: true,
             filterByFormatted: true
           },
+          { key: 'precio', label: 'Precio' ,sortable: true, sortDirection: 'asc' },
           { key: 'actions', label: 'Opciones' }
         ],
         totalRows: 1,
@@ -290,17 +292,21 @@ export default {
               titulo : item.titulo,
               marca: item.marca,
               cantidad : this.cantidad,
+              precio: item.precio
 
           }
+          alert(item.precio);
           this.$store.commit('agregarProd',prod);
           this.$store.commit('agregarSeleccionado',index);
+          this.cantidad = 0;
           
       },
       setearItem(item,index){
           var prod = {
               titulo : item.titulo,
               marca: item.marca,
-              index: index  
+              index: index ,
+              precio: item.precio 
 
           }
            this.itemSeleccionado = prod

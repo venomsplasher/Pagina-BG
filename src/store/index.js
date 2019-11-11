@@ -7,7 +7,8 @@ export default new Vuex.Store({
   state: {
     productoEditar:{},
     carrito:[],
-    itemsSeleccionados:[]
+    itemsSeleccionados:[],
+    carrito:{}
   },
   mutations: {
     setProducto (state, productoDeAfuera) {
@@ -28,6 +29,10 @@ export default new Vuex.Store({
       for (var i in state.itemsSeleccionados+1){
         state.itemsSeleccionados.pop();
       }
+    },
+    agregarCarrito(state,carrito){
+      state.carrito = carrito;
+      console.log(state.carrito);
     }
   },
   actions: {
@@ -43,6 +48,9 @@ export default new Vuex.Store({
     },
     getSeleccionados : state =>{
       return state.itemsSeleccionados
+    },
+    getCarrito : state =>{
+      return state.carrito
     }
   }
 })

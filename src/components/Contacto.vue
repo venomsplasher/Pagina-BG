@@ -1,114 +1,40 @@
 <template>
     <div class="mt-3">
         <div class="mx-auto w-50 h-100">
-        <b-row>
-            <b-col>
-                <b-input-group prepend="Nombre y Apellido" class="mt-3">
-                    <b-form-input v-model="nombreyapellido"></b-form-input>
-                    
-                </b-input-group>
-                
-            </b-col>
-        </b-row>
-        <b-row>
-            <b-col>
-                <b-input-group prepend="Telefono" class="mt-3">
-                    <b-form-input v-model="telefono"></b-form-input>
-                </b-input-group>
-            </b-col>
-            <b-col>
-                <b-input-group prepend="E-mail" class="mt-3">
-                    <b-form-input v-model="email"></b-form-input>
-                </b-input-group>
-            </b-col>
-        </b-row>
-        <b-row>
-            <b-col>
-                <!-- <b-input-group prepend="Consulta" class="mt-3">
-                    <b-form-input></b-form-input>
-                </b-input-group> -->
-                
-                <div style="width:100%; display:inline-flex">
-                    <p style="font-size:20px; text-align:start; margin-top:15px; ">Consultar por:</p>
-                    <b-button class="mt-3" variant="danger" style="margin-left:70%" @click="limpiarCarrito()">Vaciar</b-button>
-                </div>
-                
-                <b-form-textarea
-                    v-model="consulta"
-                    id="textarea-default"
-                    placeholder="Su carrito"
-                    class="mt-3"
-                    rows="12"
-                    readonly="true"
-                    no-resize="true"
-                ></b-form-textarea>
-            </b-col>
-        </b-row>
-    </div>
-
-        <div  id="iconoscontacto" style="width:100%;padding-bottom:5%;padding-top:5%;">
             <b-row>
-                <b-col cols="4"></b-col>
-                    <b-col>
-                        <a :href="'mailto:juansolo1988@gmail.com ?subject=Consulta%20Presupuesto%20para%20BG%20Computacion &body=Nombre:%20'+this.nombreyapellido+'%0A'+'Telefono:%20'+this.telefono+'%0A'+'E-Mail:%20'+this.email+'%0A'+'Consulta:%20%0A'+this.consultaUrl+'%0A%0A%0A%0A%0A%0A%0A%0A'">
-                            <img class="imagen" style="display:block; margin:auto; padding-top:0%; width:100px"  src="http://www.suitdoctors.com/wp-content/uploads/2015/11/Email-Icon.png"/>
-                        </a>
-                        <div id="consultaemail">
-                            
-                            <p>Consultanos via Email</p>   
-                        </div>
-                    </b-col>
-                    <b-col> 
-                        <a :href="'https://wa.me/542267530998?text=Nombre:%20'+this.nombreyapellido+'%0A'+'Telefono:%20'+this.telefono+'%0A'+'E-Mail:%20'+this.email+'%0A'+'Consulta:%0A'+this.consultaUrl+'%0A%0A'+'Consulta realizada desde BG Computacion Web'">
-                            <img class="imagen" style="display:block; margin:auto; padding-top:0%; width:100px"  src=" http://chaposac.com/wp-content/uploads/2017/09/icono-whatsapp-chaposac.png"/>
-                        </a>
-                        <div id="consultawhatsapp" >
-                            <p>Consultanos via Whatsapp</p>   
-                        </div> 
-                    </b-col>
-                <b-col cols="4"></b-col>
+                <b-col>
+                    <i class="material-icons" id="tienda">email</i><p>E-mail: bgcomputacionpinamar@hotmail.com</p>
+                </b-col>
             </b-row>
+
+            <b-row>
+                <b-col>
+                    <i class="material-icons" id="tienda">access_time</i><p>Horarios:
+                                                    Lunes a Viernes de 9 a 18<br/>
+                                                    Sabados de 9 a 13</p>
+                </b-col>
+                <b-col>
+                    <i class="material-icons" id="tienda">room</i><p>Direccion: Totoras 174 casi Rivadavia</p>
+                </b-col>
+            </b-row>
+            
+            <b-row>
+                <b-col>
+                    <i class="material-icons" id="tienda">phone</i><p>Telefono: (02254) 51-3484</p>
+                </b-col>
+                <b-col>
+                    <img src="https://img.icons8.com/material-outlined/24/000000/whatsapp.png" class="mb-2"><p>Whatsapp: +5492254594530</p>
+                    <!-- <i class="material-icons" id="tienda">message</i><p>Whatsapp: +5492254594530</p> -->
+                </b-col>
+            </b-row>
+            
+            
+            
+            
+            
+
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2249.895371729484!2d-56.87238319556728!3d-37.1091033320493!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x236b6aa9cfee29af!2sBG%20Computaci%C3%B3n%20Pinamar!5e0!3m2!1ses!2sar!4v1573423130744!5m2!1ses!2sar" width="800" height="600" frameborder="0" style="border:0;" allowfullscreen=""></iframe>    
+   
         </div>
-        <!-- 542254594530 -->
-    </div> 
+    </div>
 </template>
-<style>
-
-</style>
-<script>
-import { store } from '../store'
-
-export default {
-    name: 'Contacto',
-    data(){
-        return {
-            nombreyapellido:'',
-            telefono:'',
-            email:'',
-            consulta:'',
-            consultaUrl:''
-        }
-    },
-    methods:{
-        linkear(){
-            window.location.href = 'mailto:juansolo1988@gmail.com ?subject=Consulta%20Presupuesto%20para%20BG%20Computacion &body=BLABLABLA' + this.nombreyapellido;
-        },
-        traerCarrito(){
-            for(var i in this.$store.getters.getCarrito){
-            this.consulta += "Producto: "+this.$store.getters.getCarrito[i].titulo+"\nMarca: "+this.$store.getters.getCarrito[i].marca+"\nCantidad: "+this.$store.getters.getCarrito[i].cantidad+"\n\n"
-            this.consultaUrl += "%0AProducto: "+this.$store.getters.getCarrito[i].titulo+"%0AMarca: "+this.$store.getters.getCarrito[i].marca+"%0ACantidad: "+this.$store.getters.getCarrito[i].cantidad+"%0A%0A"
-            }
-            //armo la string para que quede bien en la url 
-
-        },
-        limpiarCarrito(){
-            this.$store.commit('vaciarCarrito');
-            this.$store.commit('vaciarSeleccionados');
-            this.consulta="Carrito Vacio";
-        }
-    },
-    mounted(){
-        this.traerCarrito();
-    }
-}
-</script>
